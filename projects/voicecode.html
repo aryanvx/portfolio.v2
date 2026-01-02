@@ -27,6 +27,13 @@
                 
                 <br>
 
+                <div class="boxy-h" style="color:#777777;"><a href="#case-study" class="boxy-h-link" style="color:#777777;">Case Study</a></div>
+                <div class="boxy-h" style="color:#777777;"><a href="#context" class="boxy-h-link" style="color:#777777;">Context</a></div>
+                <div class="boxy-h" style="color:#777777;"><a href="#approach" class="boxy-h-link" style="color:#777777;">Approach</a></div>
+                <div class="boxy-h" style="color:#777777;"><a href="#challenges" class="boxy-h-link" style="color:#777777;">Challenges</a></div>
+                <div class="boxy-h" style="color:#777777;"><a href="#outcome" class="boxy-h-link" style="color:#777777;">Outcome</a></div>
+                <div class="boxy-h" style="color:#777777;"><a href="#tech-stack" class="boxy-h-link" style="color:#777777;">Tech Stack</a></div>
+
                 <h2>What</h2>
 
                 <div class="intro-row">
@@ -38,7 +45,7 @@
                         Built as an experiment to see if coding with your voice could actually work and from a half-baked idea from my professor. The assumption: if speech-to-text can handle documentation, it can handle logic too.
                     </p>
                     <p>
-                        We implemented dual-mode LLM parsing (strict vs. smart), built fallback logic between Groq and OpenAI APIs, and designed real-time voice command processing with visual feedback that doesn't get in the way.
+                        I implemented dual-mode LLM parsing (strict vs. smart), built fallback logic between Groq and OpenAI APIs, and designed real-time voice command processing with visual feedback that doesn't get in the way.
                     </p>
                 </div>
 
@@ -77,8 +84,12 @@
                     <br>
 
                     <p>
-                        The main area is a syntax-highlighted editor with line numbers and proper Python formatting. Top right corner shows two status indicators: "LLM: Ready" in purple means the AI is connected and waiting, "AI: Smart" means you're in smart mode where the system infers intent instead of executing commands literally.
+                        The main area is a syntax-highlighted editor with line numbers and proper Python formatting. Top right corner shows two status indicators:
                     </p>
+                    <ol>
+                        <li>"LLM: Ready" in purple means the AI is connected and waiting</li>
+                        <li>"AI: Smart" means you're in smart mode where the system infers intent instead of executing commands literally.</li>
+                    </ol>
                     <br>
                     <img src="../assets/thumbnails/voicecode2.png" width="100%">
                     <br>
@@ -94,7 +105,7 @@
 
                 <section>
 
-                    <h2>Case Study</h2>
+                    <h2 id="case-study">Case Study</h2>
 
                     <p>
                         There are assignments you complete, and there are assignments that stay with you long after you’ve submitted them. VoiceCode began as the latter, though at the time I didn’t know it.
@@ -117,32 +128,35 @@
                     <p>
                         I began building VoiceCode a week before I flew to India, working in the hotel room and even on the plane. Now this was past the fact that there was a deadline. This assignment wasn't even mandatory, yet I was compelled by this sense of obligation that I couldn't quite explain.
                     </p>
+                    <p>
+                        Perhaps it was because I understood what it meant to lose access to something you once took for granted. Not a hand, but a country. Not a limb, but a system. The mechanics differ, but the experience of displacement remains familiar.
+                    </p>
                     <br>
-                    <h3>Context</h3>
+                    <h3 id="context">Context</h3>
                     <br>
                     <p>
                         VoiceCode started as an answer to a very simple question: How do you help someone code when the physical act of typing has been taken from them?
                     </p>
                     <p>
-                        I definitely didn't have a straightforward answer.
+                        I didn't have a straightforward answer.
                     </p>
                     <p>
                         But I could try to build a bridge.
                     </p>
                     <p>
-                        The core idea was a voice-controlled IDE (later turned into a text-editor). Something that could transform spoken natural language into working code, navigate files, jump between lines, and open documents without needing two hands, or even one. The reason it was a text-editor and not a full-fledged IDE was because it wasn’t meant to be perfect; it was meant to be possible.
+                        The core idea was a voice-controlled IDE (later turned into a text-editor). Something that could transform spoken natural language into working code, navigate files, jump between lines, and open documents without needing two hands, or even one. The reason it was a text-editor and not a full-fledged IDE was because it wasn’t meant to be perfect; it was just meant to be possible.
                     </p>
                     <br>
-                    <h3>Approach</h3>
+                    <h3 id="approach">Approach</h3>
                     <br>
                     <p>
                         The interface came first: a clean, unobtrusive environment built in React, TypeScript, TailwindCSS, and Vite. The backend was built in Node.js and Express.
                     </p>
                     <p>
-                        Voice recognition alone wouldn't be enough, because normal people speak in intent, not syntax trees. So VoiceCode leaned on two tiers of AI: Groq’s Llama 3.3 70B and OpenAI’s GPT-4o-mini, for NLP, taking it and transforming it into code.
+                        Voice recognition alone wouldn't be enough, because people speak in intent, not syntax trees. So VoiceCode leaned on two tiers of AI: Groq’s Llama 3.3 70B and OpenAI’s GPT-4o-mini for NLP, taking it and transforming it into code.
                     </p>
                     <p>
-                        And a sprawling set of regex patterns acted as the scaffolding beneath the system, catching edge cases and preventing mistakes from compounding.
+                        A sprawling set of regex patterns acted as the scaffolding beneath the system, catching edge cases and preventing mistakes from compounding.
                     </p>
                     <p>
                         The user could say things like:
@@ -156,11 +170,14 @@
                         And VoiceCode would obey, not with the theatrical flourish of a novelty tool, but with the dignity of something built for real-world use.
                     </p>
                     <br>
-                    <h3>Challenges</h3>
+                    <h3 id="challenges">Challenges</h3>
                     <p><em>And there's a lot</em></p>
                     <br>
                     <p>
                         The Web Speech API is inconsistent. Chrome handles it well, Safari doesn't, and Firefox is hit or miss. Building cross-browser support meant implementing detection logic and graceful degradation for browsers that couldn't handle continuous recognition.
+                    </p>
+                    <p>
+                        But perhaps that inconsistency reveals something larger. Technology promises universality while delivering fragmentation. Each browser becomes its own gatekeeper, deciding who gets access and who doesn't.
                     </p>
                     <p>
                         LLM prompt engineering was the real bottleneck. Getting the model to generate syntactically correct code from natural language took dozens of iterations. Early versions would return explanations instead of code, or wrap everything in markdown blocks that broke the editor. I had to fine-tune system prompts to enforce strict JSON responses with executable code only.
@@ -178,10 +195,10 @@
                         Strict mode is reliable but requires precise phrasing.
                     </p>
                     <p>
-                        Finding the balance took more time than expected.
+                        Finding the balance took more time than expected. And in that balance, I suppose, lies a lesson about systems in general. They demand precision from those who can least afford to give it.
                     </p>
                     <br>
-                    <h3>Outcome</h3>
+                    <h3 id="outcome">Outcome</h3>
                     <br>
                     <p>
                         The web app works. You can write real code with your voice. Smart mode handles context well, strict mode gives you full control, and the interface doesn't fight you.
@@ -192,8 +209,14 @@
                     <p>
                         The hardest part wasn't the AI or the voice API. It was tuning the prompts so the LLM generated code that felt natural, not robotic. That took more iterations than the actual editor logic.
                     </p>
+                    <p>
+                        I submitted the project and my professor showed it to his niece. I don't know if she uses it. I don't know if it helped. But I know I built it, and that was enough.
+                    </p>
+                    <p>
+                        Sometimes you build things not because they will change the world, but because they might change one person's relationship to it.
+                    </p>
                     <br>
-                    <h3>Tech Stack</h3>
+                    <h3 id="tech-stack">Tech Stack</h3>
                     <br>
                     <p>Frontend</p>
                     <ul>

@@ -8,6 +8,22 @@ html, body {
     height: 100%;
 }
 
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ffffff;
+    z-index: 1000;
+    padding: 12px 24px;
+}
+
+embed {
+    padding: 10px
+    
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, system-ui, -system-ui,
         "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
@@ -26,20 +42,23 @@ body {
     flex: 1;
     max-width: 960px;
     margin: 0 auto;
-    padding: 64px 24px 48px;
+    padding: 80px 24px 48px;
 }
 
 .top-name {
-    position: fixed;
-    top: 15px;
-    left: 15px;
     font-size: 14px;
     font-weight: 400;
-    color: #696864;
+    color: #373530;
     margin-bottom: 0;
-    z-index: 100;
 }
 
+code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace, Courier;
+    background-color: #EDEDEB;
+    color: #0047AB;
+    border-radius: 6px;
+    padding: 0.25%
+}
 
 h1 {
     font-size: 40px;
@@ -61,6 +80,12 @@ p {
 }
 
 ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 8px;
+}
+
+ol {
     list-style-type: disc;
     padding-left: 20px;
     margin-bottom: 8px;
@@ -129,6 +154,16 @@ footer a:hover {
     transition: background-color 0.2s ease, color 0.2s ease;
     display: inline-block;
     font-size: 13px;
+}
+
+.boxy {
+    background-color: #c;
+    padding: 2%;
+}
+
+.boxy-h:hover {
+    background-color: #f0f0f0;
+    color: #111111;
 }
 
 @media (max-width: 768px) {

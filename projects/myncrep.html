@@ -1,11 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Aryan Vyahalkar</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="../style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    </head>
     
-</body>
+    <body style="line-height: 1.5rem">
+        <nav class="navbar">
+            <div class="top-name">
+                <a href="../index.html">Aryan Vyahalkar</a> / <a href="myncrep.html">MyNCRep 🏛️</a>
+            </div> 
+        </nav>
+        <div class="page">
+            <main class="content">      
+                
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                
+                <h1 style="color: #373530; font-weight: 750;">🏛️<br><br>MyNCRep</h1>
+                
+                <br>
+
+                <h2>What</h2>
+
+                <div class="intro-row">
+
+                    <p>
+                        A civic tool that helps NC voters cut through the noise and actually understand what matters on election day. Shows where to vote, what to bring, and what each candidate stands for—no spin, no party narratives.
+                    </p>
+                    <p>
+                        Built for the 2025 Congressional App Challenge. The assumption: new voters don't lack opinions, they lack context.
+                    </p>
+                    <p>
+                        We implemented fallback logic for gaps in the Voting Information Project data, balanced API calls against local caching, and designed privacy-first location features with neutral, verifiable civic information.
+                    </p>
+                </div>
+
+                <span>
+
+                    <a href="https://aryanvx.pythonanywhere.com/" target="_blank">Live demo</a> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <br>
+                    <a href="https://github.com/EvanY-74/CAC" target="_blank">Source code</a> <i class="fab fa-github"></i> 
+
+                </span>
+
+                <section>
+
+                    <br>
+                    <p>
+                        I won't walk through every feature, but here's what matters. You can check the live demo if you want to see it work.
+                    </p>
+                    <p>
+                        This is the home hub for MyNCRep, giving voters a clear entry point into everything they need: an eligibility quiz, a step‑by‑step voting guide, candidate information, and tools to find their polling place in one place.
+                    </p>
+                    <br>
+
+                    <img src="../assets/thumbnails/myncrep1.png" width="100%">
+                    
+                </section>
+
+                <br>
+
+                <section>
+
+                    <p>
+                        The eligibility quiz walks users through age, citizenship, registration status, and optionally address. It tailors voting guidance and links directly to North Carolina's registration resources.
+                    </p>
+
+                    <br>
+                    <img src="../assets/thumbnails/myncrep2.png" width="100%">
+
+                </section>
+
+                <br>
+
+                <section>
+
+                    <p>
+                        The polling finder lets voters search by address or current location and plots nearby polling sites on an interactive map. It uses Google's Civic Information API alongside OpenStreetMap tiles to power the whole experience.
+                    </p>
+
+                    <br>
+                    <img src="../assets/thumbnails/myncrep3.png" width="100%">
+
+                </section>
+
+                <section>
+
+                    <h2>Case Study</h2>
+
+                    <p>
+                        This project reminded me why I build things. It combined problem-solving with creating something tangible that could actually help people.
+                    </p>
+                    <p>
+                        This was also the most fun I've had on a project. This was the one where I got to work with a team.
+                    </p>
+                    <p>
+                        Four people who all care about code came together to build something useful. The energy was real, ideas flowed freely, and the momentum made every challenge worth it.
+                    </p>
+                    <br>
+                    <h3>Context</h3>
+                    <br>
+                    <p>
+                        MyNCRep started simple. We wanted to build a platform that could help North Carolina residents understand who represents them and what resources they have access to. Civic tools are rarely elegant, rarely intuitive, and rarely built for the people who need them most. We wanted to change that.
+                    </p>
+                    <p>
+                        My leasing office had a conference room on the second floor. We'd sit there for hours coding, testing, recording demos, whatever needed to happen. These were the kind of sessions where you forget to check the time because you're following momentum.
+                    </p>
+                    <br>
+                    <h3>Approach</h3>
+                    <br>
+                    <p>
+                        The system was straightforward.
+                    </p>
+                    <p>
+                        We built a React frontend that was clean, fast, and structured for people who didn't want to fight their way through government websites. We built a Node.js backend that was steady and predictable, handling API requests and filtering data so users only saw what mattered.
+                    </p>
+                    <p>
+                        Each piece was written with the intention of making civic information feel less like a labyrinth and more like a tool.
+                    </p>
+                    <br>
+                    <h3>Outcome</h3>
+                    <br>
+                    <p>
+                        The web app delivered the clarity we wanted. This was my first time building a product this size from scratch, and it turned out solid.
+                    </p>
+                    <p>
+                        And quite easily, the hardest part wasn't handling the APIs correctly, or debugging edge cases, or even coming up with an idea.
+                    </p>
+                    <p>
+                        It was the video submission. We had three minutes to explain everything we built. We cut it down from hours of footage, scripted it so it would flow, and made it feel human instead of robotic. That took more iterations than the actual code.
+                    </p>
+                    <br>
+                    <h3>Tech Stack</h3>
+                    <br>
+                    <p>Frontend</p>
+                    <ul>
+                        <li>HTML / CSS / JavaScript</li>
+                        <li>Leaflet.js (mapping)</li>
+                        <li>OpenStreetMap</li>
+                    </ul>
+                    <p>Backend</p>
+                    <ul>
+                        <li>Python</li>
+                        <li>Flask / FastAPI (web framework)</li>
+                        <li>Poetry (dependency management)</li>
+                    </ul>
+                    <p>APIs</p>
+                    <ul>
+                        <li>Google Civics API</li>
+                        <li>Vote Smart API</li>
+                        <li>North Carolina State Board of Elections (NCSBE) API</li>
+                    </ul>
+                    <p>Dev tools</p>
+                    <ul>
+                        <li>Python virtual environment (venv)</li>
+                        <li>.env configuration</li>
+                    </ul>
+                </section>
+
+            </main>
+        </div>
+
+        <footer>
+            <p style="font-size: 15px">© 2025 Aryan Vyahalkar&nbsp;·&nbsp;All rights reserved.</p>
+        </footer>
+    </body>
 </html>

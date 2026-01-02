@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Aryan Vyahalkar</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="../style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+        
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    </head>
+    
+    <body style="line-height: 1.5rem">
+        <nav class="navbar">
+            <div class="top-name">
+                <a href="../index.html">Aryan Vyahalkar</a> / <a href="fruitninja.html">Fruit Ninja 🍉</a>
+            </div> 
+        </nav>
+        <div class="page">
+            <main class="content">      
+                
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                
+                <h1 style="color: #373530; font-weight: 750;">🍉<br><br>Fruit Ninja</h1>
+                <p><em>computer vision edition</em></p>
+                
+                <br>
+
+                <div class="boxy-h" style="color:#373530"><a href="#Case Study">Case Study</a></div>
+
+                <h2>What</h2>
+
+                <div class="intro-row">
+
+                    <p>
+                        A webcam-controlled version of Fruit Ninja where your hand is the blade. Move your index finger to slice fruits, pinch your thumb and index to pause. No mouse, no keyboard, just computer vision.
+                    </p>
+                    <p>
+                        Built to see if hand tracking could replace traditional input methods for simple games. I concluded that if MediaPipe can detect 21 hand landmarks in real-time, it can handle gesture-based game controls.
+                    </p>
+                </div>
+
+                <span>
+
+                    <a href="https://github.com/aryanvx/voice-coder-studio" target="_blank">Source code</a> <i class="fab fa-github"></i> 
+
+                </span>
+
+                <section>
+
+                    <br>
+                    <p>
+                        You may clone the repo to try it out for yourself. And please, if you have any additional features or spot a bug, open up a pull request.
+                    </p>
+                    <br>
+
+                    <video width="100%" height="100%" controls>
+                        <source src="../assets/fruitninja.mp4" type="video/mp4">
+                    </video>
+                    
+                </section>
+
+                <br>
+
+                <section>
+
+                    <p>
+                        The editor interface is where it all happens. Left sidebar shows your file tree. And in this case:
+                    </p>
+
+                    <div class="boxy">
+                        <code class="code">root/<br>|__main.py<br>|__utils.js<br>|__style.css</code>
+                    </div>
+                    <br>
+                    <p>
+                        The main area is a syntax-highlighted editor with line numbers and proper Python formatting. Top right corner shows two status indicators: "LLM: Ready" in purple means the AI is connected and waiting, "AI: Smart" means you're in smart mode where the system infers intent instead of executing commands literally.
+                    </p>
+                    <br>
+                    <img src="../assets/fruitninja.png" width="100%">
+                    <br>
+                    <br>
+                    <p>
+                        Bottom of the screen is the voice control panel. A purple microphone button sits ready with the text "Click the microphone to start voice coding" and a "Ready" status on the right. The LLM status shows "Enabled" in green.
+                    </p>
+                    <p>
+                        When you click that mic, the whole system listens. Speak a command, and the code appears in the editor above. No typing, no clicking through menus, just voice to code.
+                    </p>
+
+                </section>
+
+                <section>
+
+                    <h2>Case Study</h2>
+
+                    <p>
+                        This was the project that finally made all the “probability & statistics + linear algebra + stochastic calculus" (hit me up if you want the whole <a class="txt-lk" href="https://obsidian.md/">Obsidian</a> note i used) stuff click together into something cool. After doing this, I am definitely going to be dabbling in some more in computer vision / machine learning.
+                    </p>
+                    <p>
+                        It was also my first project where it wasn't "tight". No immediate feedback, no build step, no deployment. It was just change code, run, see it work (or not), repeat.
+                    </p>
+                    <br>
+                    <h3>Context</h3>
+                    <br>
+                    <p>
+                        This project started as a basic hand-tracking tool: MediaPipe + OpenCV + PyAutoGUI to move the cursor using my index finger and use a pinch as a left-click. That alone could have sufficed, but being the person that I am, I really wanted to gamify it.
+                    </p>
+                    <p>
+                        So I booted up <a class="txt-lk" href="https://www.perplexity.ai/" target="_blank">Perplexity</a> and prompted it, "simple game ideas using hand tracking." It suggested this Fruit Ninja clone, which sounded good (I chose it because the rest of the ideas were rubbish). So I set out to build it.
+                    </p>
+                    <br>
+                    <h3>Approach</h3>
+                    <br>
+                    <p>
+                        Webcam capture using <code>cv2.VideoCapture</code>, MediaPipe’s HandLandmarker for 3D hand landmarks, & OpenCV for all rendering, text, and collision visualization. I chose to encapsulate all of this within a single loop.
+                    </p>
+                    <p>
+                        The “blade” is just a trail of recent index finger positions stored in a list and rendered as a line across frames. The sole reason I included it was because I needed the reassurance that it was actually detecting my finger movement, since there’s no physical controller.
+                    </p>
+                    <p>
+                        Slicing is a distance check between those trail points and each fruit’s center; when within radius, the fruit marks itself sliced and switches to a split animation.
+                    </p>
+                    <p>
+                        Game state lives in a few scalars and lists:
+                    </p>
+                    <ul>
+                        <li>fruits</li>
+                        <li>scores</li>
+                        <li>lives</li>
+                        <li>paused</li>
+                        <li><code class="prg">spawn_timer</code></li>
+                    </ul>
+                    <br>
+                    <p>
+                        Fruits spawn with randomized \( x \), initial upward velocity, and gravity. Then the computer updates each frame until they’re sliced or fall off-screen. And lastly, a thumb–index pinch, detected via landmark distance threshold, toggles pause / play.
+                    </p>
+                    <br>
+                    <h3>The Math</h3>
+                    <br>
+                    <p>
+                        Under the hood this project is basically: take 3D hand landmarks, convert to 2D pixel coordinates, then use Euclidean geometry for the rest.
+                    </p>
+                    <p>
+                        MediaPipe gives each hand as 21 landmarks with \( (x, y, z) \) where \(x, y\) are normalized to \([0, 1]\) in image coordinates and \(z\) is the relative depth value.
+                    </p>
+                    <p>
+                        To actually get a fingertip in pixels, you do:
+                    </p>
+                    <ul>
+                        <li>\( x_{px}= landmark.x × frame\)_\(width \)</li>
+                        <li>\( y_{px}= landmark.y × frame\)_\(height \)</li>
+                    </ul>
+                    <br>
+                    <p>
+                        Once you have that, you need to detect pinching. The way I did it was simple distance thresholding between the thumb tip (landmark 4) and index finger tip (landmark 8) in normalized landmark space:
+                    </p>
+                    <p>
+                        In essence, you're computing the 3D Euclidean distance:
+                    </p>
+                    <p>
+                        \( d = \sqrt{(x_4 - x_8)^2 + (y_4 - y_8)^2 + (z_4 - z_8)^2} \) and treating pinch as when \( d < 0.05 \).
+                    </p>
+                    <br>
+                    <p>
+                        Conceptually, landmarks closer together in camera space \( = \) a smaller \( d \).
+                    </p>
+                    <p>
+                        Now for the fruit itself. Each fruit is a point mass with basic kinematics in 2D. And it has, really 2 components:
+                    </p>
+                    <ol>
+                        <li>Position: \( (x, y) \)</li>
+                        <li>Velocity: \( (v_x, v_y) \)</li>
+                    </ol>
+                    <br>
+                    <h3>Outcome</h3>
+                    <br>
+                    <p>
+                        The web app works. You can write real code with your voice. Smart mode handles context well, strict mode gives you full control, and the interface doesn't fight you.
+                    </p>
+                    <p>
+                        This was my first time building something that bridges speech recognition with code generation at this level, and it turned out solid.
+                    </p>
+                    <p>
+                        The hardest part wasn't the AI or the voice API. It was tuning the prompts so the LLM generated code that felt natural, not robotic. That took more iterations than the actual editor logic.
+                    </p>
+                    <br>
+                    <h3>Tech Stack</h3>
+                    <br>
+                    <p>Frontend</p>
+                    <ul>
+                        <li>Python 3.8+</li>
+                        <li>MediaPipe (Google's ML framework for hand tracking)</li>
+                        <li>OpenCV (video processing)</li>
+                        <li>PyAutoGUI (mouse control)</li>
+                    </ul>
+                    <p>ML Model</p>
+                    <ul>
+                        <li>MediaPipe Hand Landmarker (pre-trained model)</li>
+                    </ul>
+                    <p>Platform</p>
+                    <ul>
+                        <li>Cross-platform (macOS, Windows, Linux)</li>
+                        <li>Webcam-based input</li>
+                    </ul>
+
+                </section>
+
+            </main>
+        </div>
+
+        <footer>
+            <p style="font-size: 15px">© 2025 Aryan Vyahalkar&nbsp;·&nbsp;All rights reserved.</p>
+        </footer>
+    </body>
+</html>

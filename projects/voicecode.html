@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Aryan Vyahalkar</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="../style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    </head>
+    
+    <body style="line-height: 1.5rem">
+        <nav class="navbar">
+            <div class="top-name">
+                <a href="../index.html">Aryan Vyahalkar</a> / <a href="voicecode.html">VoiceCode 🎙️</a>
+            </div> 
+        </nav>
+        <div class="page">
+            <main class="content">      
+                
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                
+                <h1 style="color: #373530; font-weight: 750;">🎙️<br><br>VoiceCode</h1>
+                
+                <br>
+
+                <h2>What</h2>
+
+                <div class="intro-row">
+
+                    <p>
+                        A voice-controlled code editor that lets you write and edit code without touching a keyboard. Speak your code, and it appears. Tell it to fix something, and it does.
+                    </p>
+                    <p>
+                        Built as an experiment to see if coding with your voice could actually work and from a half-baked idea from my professor. The assumption: if speech-to-text can handle documentation, it can handle logic too.
+                    </p>
+                    <p>
+                        We implemented dual-mode LLM parsing (strict vs. smart), built fallback logic between Groq and OpenAI APIs, and designed real-time voice command processing with visual feedback that doesn't get in the way.
+                    </p>
+                </div>
+
+                <span>
+
+                    <a href="https://voice-coder-studio.vercel.app/" target="_blank">Live demo</a> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <br>
+                    <a href="https://github.com/aryanvx/voice-coder-studio" target="_blank">Source code</a> <i class="fab fa-github"></i> 
+
+                </span>
+
+                <section>
+
+                    <br>
+                    <p>
+                        This is the landing page. Four feature cards (and example voice commands below it) that explain what the system does: voice commands for natural language input, smart code generation that understands context, adaptive learning that improves over time, and voice navigation to move through your codebase without clicking.
+                    </p>
+                    <br>
+
+                    <img src="../assets/thumbnails/voicecode1.png" width="100%">
+                    
+                </section>
+
+                <br>
+
+                <section>
+
+                    <p>
+                        The editor interface is where it all happens. Left sidebar shows your file tree. And in this case:
+                    </p>
+
+                    <div class="embed">
+                        <code class="code">root/<br>|__main.py<br>|__utils.js<br>|__style.css</code>
+                    </div>
+                    <br>
+                    <p>
+                        The main area is a syntax-highlighted editor with line numbers and proper Python formatting. Top right corner shows two status indicators: "LLM: Ready" in purple means the AI is connected and waiting, "AI: Smart" means you're in smart mode where the system infers intent instead of executing commands literally.
+                    </p>
+                    <br>
+                    <img src="../assets/thumbnails/voicecode2.png" width="100%">
+                    <br>
+                    <br>
+                    <p>
+                        Bottom of the screen is the voice control panel. A purple microphone button sits ready with the text "Click the microphone to start voice coding" and a "Ready" status on the right. The LLM status shows "Enabled" in green.
+                    </p>
+                    <p>
+                        When you click that mic, the whole system listens. Speak a command, and the code appears in the editor above. No typing, no clicking through menus, just voice to code.
+                    </p>
+
+                </section>
+
+                <section>
+
+                    <h2>Case Study</h2>
+
+                    <p>
+                        There are assignments you complete, and there are assignments that stay with you long after you’ve submitted them. VoiceCode began as the latter, though at the time I didn’t know it.
+                    </p>
+                    <p>
+                        It arrived unannounced, the way that most meaningful things often do, a bonus task assigned by a professor, after I’d finished my work early.
+                    </p>
+                    <p>
+                        He told me to check the privatized assignment only after watching me help a classmate, as if he had been waiting for the right moment to ask something more of me.
+                    </p>
+                    <p>
+                        The instructions were quite brief and it left a lot of creative ideas on the table: “Build a web app that can help physically impaired programmers.”
+                    </p>
+                    <p>
+                        But, the story behind it was not. His 12-year-old niece, already drawn to computers, had lost one of her hands in a car accident. She wanted to keep learning, and he wanted to give her a chance.
+                    </p>
+                    <p>
+                        And like that, the assignment stopped being an assignment.
+                    </p>
+                    <p>
+                        I began building VoiceCode a week before I flew to India, working in the hotel room and even on the plane. Now this was past the fact that there was a deadline. This assignment wasn't even mandatory, yet I was compelled by this sense of obligation that I couldn't quite explain.
+                    </p>
+                    <br>
+                    <h3>Context</h3>
+                    <br>
+                    <p>
+                        VoiceCode started as an answer to a very simple question: How do you help someone code when the physical act of typing has been taken from them?
+                    </p>
+                    <p>
+                        I definitely didn't have a straightforward answer.
+                    </p>
+                    <p>
+                        But I could try to build a bridge.
+                    </p>
+                    <p>
+                        The core idea was a voice-controlled IDE (later turned into a text-editor). Something that could transform spoken natural language into working code, navigate files, jump between lines, and open documents without needing two hands, or even one. The reason it was a text-editor and not a full-fledged IDE was because it wasn’t meant to be perfect; it was meant to be possible.
+                    </p>
+                    <br>
+                    <h3>Approach</h3>
+                    <br>
+                    <p>
+                        The interface came first: a clean, unobtrusive environment built in React, TypeScript, TailwindCSS, and Vite. The backend was built in Node.js and Express.
+                    </p>
+                    <p>
+                        Voice recognition alone wouldn't be enough, because normal people speak in intent, not syntax trees. So VoiceCode leaned on two tiers of AI: Groq’s Llama 3.3 70B and OpenAI’s GPT-4o-mini, for NLP, taking it and transforming it into code.
+                    </p>
+                    <p>
+                        And a sprawling set of regex patterns acted as the scaffolding beneath the system, catching edge cases and preventing mistakes from compounding.
+                    </p>
+                    <p>
+                        The user could say things like:
+                    </p>
+                    <ul>
+                        <li>"Open file utils.js."</li>
+                        <li>"Go to line thirty-four."</li>
+                        <li>"Create a function called merge arrays."</li>
+                    </ul>
+                    <p>
+                        And VoiceCode would obey, not with the theatrical flourish of a novelty tool, but with the dignity of something built for real-world use.
+                    </p>
+                    <br>
+                    <h3>Challenges</h3>
+                    <p><em>And there's a lot</em></p>
+                    <br>
+                    <p>
+                        The Web Speech API is inconsistent. Chrome handles it well, Safari doesn't, and Firefox is hit or miss. Building cross-browser support meant implementing detection logic and graceful degradation for browsers that couldn't handle continuous recognition.
+                    </p>
+                    <p>
+                        LLM prompt engineering was the real bottleneck. Getting the model to generate syntactically correct code from natural language took dozens of iterations. Early versions would return explanations instead of code, or wrap everything in markdown blocks that broke the editor. I had to fine-tune system prompts to enforce strict JSON responses with executable code only.
+                    </p>
+                    <p>
+                        Latency was another problem. Voice commands need to feel instant, but API calls to Groq or OpenAI can take 1-2 seconds. I added optimistic UI updates and streaming responses where possible, but there's still a noticeable delay on complex commands. Caching common patterns helped, but didn't solve it completely.
+                    </p>
+                    <p>
+                        The dual-mode system (strict vs. smart) introduced complexity. Deciding when to use which mode, and how to make that decision transparent to the user without cluttering the interface, required multiple design iterations.
+                    </p>
+                    <p>    
+                        Smart mode is powerful but unpredictable.
+                    </p>
+                    <p>
+                        Strict mode is reliable but requires precise phrasing.
+                    </p>
+                    <p>
+                        Finding the balance took more time than expected.
+                    </p>
+                    <br>
+                    <h3>Outcome</h3>
+                    <br>
+                    <p>
+                        The web app works. You can write real code with your voice. Smart mode handles context well, strict mode gives you full control, and the interface doesn't fight you.
+                    </p>
+                    <p>
+                        This was my first time building something that bridges speech recognition with code generation at this level, and it turned out solid.
+                    </p>
+                    <p>
+                        The hardest part wasn't the AI or the voice API. It was tuning the prompts so the LLM generated code that felt natural, not robotic. That took more iterations than the actual editor logic.
+                    </p>
+                    <br>
+                    <h3>Tech Stack</h3>
+                    <br>
+                    <p>Frontend</p>
+                    <ul>
+                        <li>React 18 with TypeScript</li>
+                        <li>Vite (build tool)</li>
+                        <li>Tailwind CSS + PostCSS</li>
+                        <li>shadcn/ui components</li>
+                    </ul>
+                    <p>APIs</p>
+                    <ul>
+                        <li>OpenAI API (for LLM code generation)</li>
+                        <li>Groq API (alternative LLM provider)</li>
+                        <li>Web Speech API / MediaRecorder (voice input)</li>
+                    </ul>
+                    <p>Deployment + dev tools</p>
+                    <ul>
+                        <li>Vercel</li>
+                        <li>ESLint</li>
+                        <li>Node.js environment</li>
+                    </ul>
+
+                </section>
+
+            </main>
+        </div>
+
+        <footer>
+            <p style="font-size: 15px">© 2025 Aryan Vyahalkar&nbsp;·&nbsp;All rights reserved.</p>
+        </footer>
+    </body>
+</html>

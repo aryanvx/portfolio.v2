@@ -40,12 +40,13 @@
                 <div class="intro-row">
 
                     <p>
-                        A goal-planning web application inspired by the Harada Method, the goal-setting framework famously used by MLB star <a class="txt-lk" href="https://en.wikipedia.org/wiki/Shohei_Ohtani">Shohei Ohtani</a> when he was just a high school student.
-                    <p>
-                        The app transforms any ambitious goal into a structured 8×8 grid containing 8 supporting pillars and 64 actionable tasks, giving users a comprehensive roadmap to achieve their objectives. 
+                        A goal-planning tool built around the Harada Method, the same goal-setting framework <a href="https://en.wikipedia.org/wiki/Shohei_Ohtani" class="txt-lk">Shohei Ohtani</a> used as a high school freshman when he mapped out his path to becoming the #1 draft pick.
                     </p>
                     <p>
-                        Implemented client-side routing with React Router and configured Vercel rewrites to handle SPA navigation, resolving 404 errors on direct URL access to shared grids.
+                        The app takes any ambitious goal and structures it into an 8×8 grid containing 8 supporting pillars, and within it, 64 actionable tasks.
+                    </p>
+                    <p>
+                        The app uses Groq's API for fast LLM inference to generate the breakdown. I implemented client-side routing with React Router and configured Vercel rewrites to handle SPA navigation, which resolved 404 errors on direct URL access to shared grids.
                     </p>
 
                 </div>
@@ -62,10 +63,10 @@
 
                     <br>
                     <p>
-                        Below, is the landing page. Pretty minimal. The "原田メソッド" directly translates to "Harada Method." What's left is to just input any goal you have, and hit the "Generate Plan" button.
+                        Below is the landing page. Pretty minimal. The "原田メソッド" directly translates to "Harada Method." What's left is to input any goal you have and hit the "Generate Plan" button.
                     </p>
                     <p>
-                        And yes, I know exactly what you're thinking. And the answer is: if you input something stupid, it will give you a stupid answer.
+                        And yes, I know exactly what you're thinking. If you input something stupid, it will give you a stupid answer.
                     </p>
                     <br>
 
@@ -78,7 +79,7 @@
                 <section>
 
                     <p>
-                        This is, what I call, the Inspiration Gallery, located directly underneath the screen you just saw. Here, all of the grids set to "Public" (I'll get to that later) will be viewable and found here, shuffling through itself.
+                        This is what I call the Inspiration Gallery, located directly underneath the screen you just saw. Here, all grids set to "Public" (I'll get to that later) are viewable and found here, shuffling through itself.
                     </p>
 
                     <br>
@@ -92,7 +93,7 @@
                 <section>
 
                     <p>
-                        Now lastly, we have the grid itself. As I mentioned before, you can see, towards the top-right, that there's a button, reading "Public", as that's what it's set to right now. By default it's set to "Private", meaning only you can see it. I also added X, LinkedIn, and share link buttons to make it easier to share your grid with others.
+                        Now lastly, we have the grid itself. As I mentioned before, you can see towards the top-right that there's a button reading "Public," as that's what it's set to right now. By default it's set to "Private," meaning only you can see it. I also added X, LinkedIn, and share link buttons to make it easier to share your grid with others.
                     </p>
 
                     <br>
@@ -105,7 +106,7 @@
                     <h2 id="case-study">Case Study</h2>
 
                     <p>
-                        There are projects we build out of curiosity, and there are those we build because something in us refuses to stay still. haradaAI belonged to the latter. It began as an idea I saw on the <a class="txt-lk" href="https://www.gethalfbaked.com/" target="_blank">Half Baked newsletter</a> 🔗 (go check it out it's great): a system that could bridge conversation and intention, not with theatrical ambition but with the precision of a tool that knew its place in the world.
+                        There are projects we build out of curiosity, and there are those we build because something in us refuses to stay still. haradaAI belonged to the latter. It began as an idea I saw on the <a href="https://www.gethalfbaked.com/" class="txt-lk">Half Baked newsletter</a> (go check it out it's great): a tool that could turn abstract goals into concrete steps.
                     </p>
                     <p>
                         Yet I will admit, when I started, I did not fully understand the magnitude of what I was trying to create.
@@ -114,43 +115,43 @@
                     <h3 id="context">Context</h3>
                     <br>
                     <p>
-                        haradaAI was born from an observation: people often know what they want to say, but not how to say it in the shape the world demands. Whether it was writing emails, structuring assignments, explaining concepts, or carrying a piece of thought from one person to another, there was a gap between intention and articulation.
+                        haradaAI was born from an observation:
+                    </p>
+                    <p class="special">
+                        Most people know what they want to achieve but don't know how to structure the path there. Whether it was career goals, fitness targets, learning objectives, or personal projects, there was a gap between ambition and actionable planning.
                     </p>
                     <p>
                         And being the person that I am, I wanted to close it.
                     </p>
                     <p>
-                        So I set out to build a web-based AI assistant that didn’t pretend to be a personality, nor a sage, nor a spectacle, but a digital extension of the user’s own mind.
+                        So I set out to build a web-based planning tool that didn't pretend to be anything more than what it was: a system for breaking down goals into manageable pieces.
                     </p>
                     <br>
                     <h3 id="approach">Approach</h3>
                     <br>
                     <p>
-                        I began by shaping the interface as plainly as a clean sheet of paper. No theatrics. Nothing excessive. The user would enter their prompt, choose the mode they needed (explain, simplify, generate, or refine) and watch as the system responded with the restraint and discipline of a tool that actually knew its boundaries.
+                        I kept the interface simple. A single input field, a generate button, and a clean 8×8 grid output. No unnecessary features. No bloat.
                     </p>
                     <p>
-                        The architecture followed the same philosophy.
+                        The architecture was straightforward. React for the frontend, Groq's API for the LLM inference because of its speed, and a structured prompt that consistently generated usable breakdowns.
                     </p>
                     <p>
-                        A frontend written in semantic HTML and responsive CSS, paired with fast, asynchronous JavaScript to handle streaming responses from the LLM backend. I designed the request pipeline so nothing felt sluggish. The result was an 8×8 grid.
+                        I designed the system so the AI would organize one central goal into 8 supporting pillars, then break each pillar into 8 specific tasks, giving users 64 concrete steps.
                     </p>
                     <p>
-                        But the true weight of haradaAI was in its ability to adapt. Not flamboyantly, not boastfully, but subtly.
-                    </p>
-                    <p>
-                        It could learn the user’s preference for tone, detail, and format within each session. Everything temporary (but not if you set it to public, because then anyone can see it in the <a href="#inspiration-gallery" class="txt-lk">Inspiration Gallery</a>).
+                        The grid format wasn't arbitrary. It forced clarity. Each cell had to contain something actionable, not vague platitudes.
                     </p>
                     <br>
                     <h3 id="challenges">Challenges</h3>
                     <br>
                     <p>
-                        The first challenge was how to let the user move from idea to expression and to limit the friction.
+                        The first challenge was prompt engineering. Getting the LLM to consistently output 64 genuinely useful tasks without repetition or fluff took iteration.
                     </p>
                     <p>
-                        The second was restraint. Preventing the system from overstepping, from adding opinion or flourish where none was needed.
+                        The second was restraint. I kept wanting to add features like progress tracking, deadline management, and analytics. But each addition pulled the tool further from its core purpose: just generate the damn grid.
                     </p>
                     <p>
-                        And the third was reliability. A model may hallucinate, but a tool may not. So I designed guardrails: concise prompts, output checks, and a fallback system that ensured the assistant always returned something practical even when the user prompted something lackluster and vague.
+                        And the third was handling edge cases. Vague goals produced vague outputs. Overly complex goals got mangled. I added basic input validation and guardrails, but ultimately, garbage in meant garbage out.
                     </p>
                     <p>
                         But I came across the most difficult part later in development. I realized that simplicity is not the absence of complexity, but its containment. I discarded feature after feature. Stuff like history logs, persistent profiles, theme variations. And all because they weighed the system down with a kind of greed.
@@ -159,10 +160,10 @@
                     <h3 id="outcome">Outcome</h3>
                     <br>
                     <p>
-                        haradaAI is what I envisioned it to be. Students used it to stay on top of assignments, professionals used it to refine their goal-setting skills, and friends used it to be able turn half-formed thoughts into something of substance.
+                        haradaAI does what I built it to do. People use it to structure their goals. Some share their grids publicly. Others keep them private. The tool doesn't try to motivate you or track your progress. It just gives you the breakdown and gets out of your way.
                     </p>
                     <p>
-                        In building it, I learned something that stays with me even now. When you strip a system down to its essentials, what remains is the intent. And coding, like most things in life, becomes clearer when you stop trying to impress others and start trying to understand.
+                        In building it, I learned that the best tools are often the simplest ones. When you resist the urge to overcomplicate, what remains is actually useful.
                     </p>
                     <br>
                     <h3 id="tech-stack">Tech Stack</h3>

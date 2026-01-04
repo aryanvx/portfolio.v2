@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Aryan Vyahalkar / Object Detector</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="../style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+        
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    </head>
+    
+    <body style="line-height: 1.5rem">
+        <nav class="navbar">
+            <div class="top-name">
+                <a href="../index.html">Aryan Vyahalkar</a> / <a href="yolo.html">Object Detector 🔎</a>
+            </div> 
+        </nav>
+        <div class="page">
+            <main class="content">      
+                
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                
+                <h1 style="color: #373530; font-weight: 750;">🔎<br>Real-time Object Detector</h1>
+                <p><em>using computer vision</em></p>
+                
+                <br>
+                <br>
+
+                <div class="boxy-h" style="color:#777777;"><a href="#case-study" class="boxy-h-link" style="color:#777777;">Case Study</a></div>
+                <div class="boxy-h" style="color:#777777;"><a href="#context" class="boxy-h-link" style="color:#777777;">&nbsp; Context</a></div>
+                <div class="boxy-h" style="color:#777777;"><a href="#approach" class="boxy-h-link" style="color:#777777;">&nbsp; Approach</a></div>
+                <div class="boxy-h" style="color:#777777;"><a href="#the-math" class="boxy-h-link" style="color:#777777;">&nbsp; The Math</a></div>
+                <div class="boxy-h" style="color:#777777;"><a href="#outcome" class="boxy-h-link" style="color:#777777;">&nbsp; Outcome</a></div>
+                <div class="boxy-h" style="color:#777777;"><a href="#tech-stack" class="boxy-h-link" style="color:#777777;">&nbsp; Tech Stack</a></div>
+
+                <h2>What</h2>
+
+                <div class="intro-row">
+
+                    <p>
+                        A real-time object detection system that identifies 80+ object classes through your webcam using <code>YOLOv8</code>. Point your camera at anything
+                    </p>
+                    <p class="special">
+                        <em>People, vehicles, animals, everyday objects, etc.</em>
+                    </p>
+                    <p>
+                        and watch it draw bounding boxes with confidence scores in real-time.
+                    </p>
+                    <br>
+                    <p>
+                        Built to understand how modern object detection works from the ground up. I concluded that if <code>YOLO</code> can process 640×640 images at 30+ FPS while running convolutional neural networks with millions of parameters, computer vision has come a long way from the hand-crafted feature detectors of the past.
+                    </p>
+                    <p>
+                        But perhaps what struck me most was how simple it felt once the pieces came together. A hundred lines of Python, a pretrained model, and suddenly you have something that sees.
+                    </p>
+                </div>
+
+                <span>
+
+                    <a href="https://github.com/aryanvx/obj-detector" target="_blank">Source code</a> <i class="fab fa-github"></i> 
+
+                </span>
+
+                <section>
+
+                    <br>
+                    <p>
+                        You may clone the repo to try it out for yourself. And please, if you have any additional features or spot a bug, open up a pull request.
+                    </p>
+                    <br>
+
+                    <video width="100%" height="100%" controls>
+                        <source src="../assets/yolo.mp4" type="video/mp4">
+                    </video>
+                    <p style="color: #777777">
+                        <em>Me demoing the detector</em>
+                    </p>
+                    
+                </section>
+
+                <br>
+
+                <section>
+
+                    <h2 id="case-study">Case Study</h2>
+
+                    <p>
+                        This was the project where all the deep learning theory (convolutions, activation functions, backpropagation, gradient descent) finally manifested into something tangible. After building this, I'm convinced that computer vision is where I want to spend more time.
+                    </p>
+                    <p>
+                        It was also refreshingly different from web development. No APIs to design, no state management headaches, no deployment pipelines.
+                    </p>
+                    <p>
+                        Just: write code, point camera, see if it detects your coffee mug, iterate.
+                    </p>
+                    <p>
+                        I had spent months thinking about systems in terms of requests and responses, databases and authentication, frontend and backend. But computer vision operates in a different paradigm entirely. Here, the system sees. And that felt fundamentally different.
+                    </p>
+                    <br>
+                    <h3 id="context">Context</h3>
+                    <br>
+                    <p>
+                        This started as a "cheat project" while taking a break from web development. I wanted something quick and visual that would let me explore computer vision without committing to a massive research project.
+                    </p>
+                    <p>
+                        YOLO (You Only Look Once) seemed like the obvious choice. It's not only fast and accurate, the pretrained models can handle 80 object classes out of the box. So I spun up a Python environment and got to work.
+                    </p>
+                    <p>
+                        But let me be clear about something. I did not invent <code>YOLO</code>, nor did I train these models from scratch.
+                    </p>
+                    <p>
+                        Joseph Redmon and his team did that <a href="https://arxiv.org/abs/1506.02640" class="txt-lk" target="_blank">work</a> (arXiv paper 🔗) in 2016, fundamentally changing how we approach real-time object detection. What I built was an implementation: a way to understand the system by using it, extending it, and watching it work.
+                    </p>
+                    <br>
+
+                    <h3 id="approach">Approach</h3>
+                    <br>
+                    <p>
+                        Webcam capture via <code>cv2.VideoCapture</code>, <code>YOLOv8</code> from Ultralytics for detection, and OpenCV for all rendering. The architecture is straightforward:
+                    </p>
+                    <p class="special">
+                        capture frame → run through <code>YOLO</code> → draw bounding boxes → repeat
+                    </p>
+                    <br>
+                    <p>
+                        Each detection gives you a bounding box \( (x, y, width, height) \), a confidence score, and a class label. The confidence threshold filters out weak detections: set it too low and you get false positives, too high and you miss legitimate objects.
+                    </p>
+                    <div class="section-image">
+                        <img src="../assets/thumbnails/v8model.png">
+                    </div>
+                    <p>
+                        I added basic features like frame capture (press "c" to save), FPS counter, and the ability to switch between different <code>YOLO</code> model sizes (nano for speed, xlarge for accuracy).
+                    </p>
+                    <p>
+                        The main game state is minimal:
+                    </p>
+                    <ul>
+                        <li>current frame from webcam</li>
+                        <li>detection results (list of boxes, confidences, classes)</li>
+                        <li>model parameters (size, confidence threshold)</li>
+                        <li>frame counter</li>
+                    </ul>
+                    <br>
+                    <p>
+                        Each frame gets preprocessed (resized to 640×640, normalized), fed through the neural network, then post-processed with <a href="https://www.geeksforgeeks.org/computer-vision/what-is-non-maximum-suppression/" class="txt-lk" target="_blank">Non-Maximum Suppression (NMS)</a> 🔗 to eliminate duplicate detections of the same object.
+                    </p>
+                    <br>
+                    <h3 id="the-math">The Math</h3>
+                    <br>
+                    <p>
+                        When you break this down, layer by layer, the majority is just math. It's like a crash course in deep learning math: convolutional operations, feature extraction, bounding box regression, and probabilistic classification.
+                    </p>
+                    <p>
+                        Perhaps the elegance of <code>YOLO</code> lies in its simplicity. Where earlier methods like <a href="https://www.geeksforgeeks.org/machine-learning/r-cnn-region-based-cnns/" class="txt-lk" target="_blank">R-CNN</a> 🔗 required multiple passes and complex region proposals, <code>YOLO</code> looks once, hence the name, and makes all predictions simultaneously.
+                    </p>
+                    <p>
+                        That single insight changed everything.
+                    </p>
+                    <p>
+                        <code>YOLO</code> divides each input image into an \( S \times S \) grid. Each grid cell predicts \( B \) bounding boxes and confidence scores. The confidence represents:
+                    </p>
+                    <p>
+                        \( \text{Confidence} = P(\text{object}) \times \text{IoU}_{\text{pred}}^{\text{truth}} \)
+                    </p>
+                    <br>
+                    <p>
+                        Each bounding box consists of 5 predictions: \( (x, y, w, h, \text{confidence}) \) where:
+                    </p>
+                    <ul>
+                        <li>\( x, y \) are the center coordinates relative to grid cell bounds</li>
+                        <li>\( w, h \) are width and height relative to the whole image</li>
+                        <li>\( \text{confidence} \) is the objectness score</li>
+                    </ul>
+                    <br>
+                    <p>
+                        The actual bounding box coordinates are computed using anchor boxes and sigmoid activations:
+                    </p>
+                    <ul>
+                        <li>
+                            \( b_x = \sigma(t_x) + c_x \)
+                        </li>
+                        <li>
+                            \( b_y = \sigma(t_y) + c_y \)
+                        </li>
+                        <li>
+                            \( b_w = p_w \times e^{t_w} \)
+                        </li>
+                        <li>
+                            \( b_h = p_h \times e^{t_h} \)
+                        </li>
+                    </ul>
+                    <br>
+                    <p>
+                        Where \( \sigma \) is the sigmoid function, \( (c_x, c_y) \) is the grid cell location, and \( (p_w, p_h) \) are the anchor dimensions.
+                    </p>
+                    <p>
+                        Now for Intersection over Union (IoU), which measures how much two boxes overlap:
+                    </p>
+                    <p>
+                        \( \text{IoU} = \frac{\text{Area of Overlap}}{\text{Area of Union}} = \frac{A \cap B}{A \cup B} \)
+                    </p>
+                    <br>
+                    <p>
+                        This is critical for NMS, which eliminates redundant detections. NMS works by:
+                    </p>
+                    <ol>
+                        <li>sorting all boxes by confidence score</li>
+                        <li>keeping the highest confidence box</li>
+                        <li>removing all boxes with \( \text{IoU} > \text{threshold} \) with the kept box</li>
+                        <li>repeating for remaining boxes</li>
+                    </ol>
+                    <br>
+                    <p>
+                        The loss function during training is multi-part, combining classification loss, localization loss, and objectness loss:
+                    </p>
+                    <p>
+                        \( \mathcal{L}_{\text{total}} = \lambda_{\text{cls}} \mathcal{L}_{\text{cls}} + \lambda_{\text{box}} \mathcal{L}_{\text{box}} + \lambda_{\text{obj}} \mathcal{L}_{\text{obj}} \)
+                    </p>
+                    <br>
+                    <p>
+                        Where the box loss uses Complete IoU (known as CIoU):
+                    </p>
+                    <p>
+                        \( \mathcal{L}_{\text{CIoU}} = 1 - \text{IoU} + \frac{\rho^2(b, b^{gt})}{c^2} + \alpha v \)
+                    </p>
+                    <p class="special">
+                        💡 <em>For reference:</em><br>
+                        (1) \( \rho =\) distance between predicted and ground truth box centers<br>
+                        (2) \( c =\) the diagonal of the smallest enclosing box<br>
+                        (3) \( v \) measures aspect ratio consistency
+                    </p>
+                    <br>
+                    <p>
+                        At the core, convolutions extract features by sliding kernels across the image:
+                    </p>
+                    <p>
+                        \( \text{Output}(i,j) = \sum_m \sum_n \text{Input}(i+m, j+n) \times \text{Kernel}(m,n) \)
+                    </p>
+                    <br>
+                    <p>
+                        These features get processed through multiple layers with Rectified Linear Unit (ReLU) activations:
+                    </p>
+                    <p class="special">
+                        💡 ReLU is defined as \( f(x) = max(0, x) \)
+                    </p>
+                    <br>
+                    <p>
+                        And that's the essence of it.
+                    </p>
+                    <p>
+                        The whole detection pipeline is essentially:
+                    </p>
+                    <div class="embed">
+                        <p class="special">(1) preprocess frame to 640×640 normalized tensor<br>(2) forward pass through CNN backbone and detection head<br>(3) apply NMS to eliminate duplicate detections<br>(4) filter by confidence threshold and render results</p>
+                    </div>
+                    <p>
+                        But perhaps what these equations don't capture is the historical weight behind them.
+                    </p>
+                    <p>
+                        Before deep learning, computer vision relied on hand-crafted features (ex: SIFT, HOG, Haar cascades). Basically just methods that required human experts to manually design what the algorithm should look for. It worked, but it was brittle.
+                    </p>
+                    <p>
+                        <code>YOLO</code>, and CNNs in general, changed that.
+                    </p>
+                    <p>
+                        The features are learned, not designed. The network discovers what matters through backpropagation and gradient descent . And that shift from hand-crafted to learned representations is what made modern computer vision possible.
+                    </p>
+                    <br>
+
+                    <h3 id="outcome">Outcome</h3>
+                    <br>
+                    <p>
+                        This project shifted my perspective on what's possible with relatively simple code. A hundred lines of Python and suddenly you have a system that can identify objects in real-time with startling accuracy.
+                    </p>
+                    <p>
+                        The math is dense: CNNs, loss functions, gradient descent, etc., but seeing it work in practice made everything click. There's something deeply satisfying about pointing your webcam at a random object and watching the model be able label it.
+                    </p>
+                    <p>
+                        I felt like a proud dad and this script was my kid labeling that I was actually a person.
+                    </p>
+                    <p>
+                        Now I have a working object detection framework that I can extend. Maybe add object tracking across frames, or train it on custom classes, or build a zone-based alert system.
+                    </p>
+                    <p>
+                        I tell you this not because I've mastered computer vision, but because I've seen enough to know that this is where I want to go deeper. The boundary between software that processes information and software that perceives the world is narrowing. And I want to be part of that.
+                    </p>
+                    <p>
+                        Future prospects: possibly fine-tuning YOLO on custom datasets, or diving into segmentation models like SAM. Who knows. Reach out if you want to collaborate on something in this space.
+                    </p>
+
+                    <br>
+                    <h3 id="tech-stack">Tech Stack</h3>
+                    <br>
+                    <p>Core</p>
+                    <ul>
+                        <li>Python 3.8+</li>
+                        <li>Ultralytics <code>YOLOv8</code> (state-of-the-art object detection)</li>
+                        <li>OpenCV (video processing and rendering)</li>
+                        <li>PyTorch (deep learning backend)</li>
+                    </ul>
+                    <p>ML Model</p>
+                    <ul>
+                        <li>YOLOv8 (pretrained on COCO dataset)</li>
+                        <li>80 object classes</li>
+                        <li>Multiple model sizes (nano to xlarge)</li>
+                    </ul>
+                    <p>Platform</p>
+                    <ul>
+                        <li>Cross-platform (macOS, Windows, Linux)</li>
+                        <li>Webcam-based input</li>
+                        <li>Real-time inference (30+ FPS)</li>
+                    </ul>
+
+                </section>
+
+            </main>
+        </div>
+
+        <footer>
+            <p style="font-size: 15px">© 2025 Aryan Vyahalkar&nbsp;·&nbsp;All rights reserved.</p>
+        </footer>
+    </body>
+</html>
